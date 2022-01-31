@@ -22,10 +22,10 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.ProductList = New System.Windows.Forms.ListBox()
+        Me.lbProductList = New System.Windows.Forms.ListBox()
         Me.lblPetSupplyShop = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.ListView1 = New System.Windows.Forms.ListView()
+        Me.lvProductInformation = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = New System.Windows.Forms.ColumnHeader()
         Me.Quantity = New System.Windows.Forms.ColumnHeader()
         Me.ItemPrice = New System.Windows.Forms.ColumnHeader()
@@ -42,24 +42,25 @@ Partial Class Form1
         Me.BntCheckOut = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.lblQuarters = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtQuarters = New System.Windows.Forms.TextBox()
+        Me.txtDimes = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.txtNickels = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.txtPennis = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.lbPrices = New System.Windows.Forms.ListBox()
         Me.SuspendLayout()
         '
-        'ProductList
+        'lbProductList
         '
-        Me.ProductList.FormattingEnabled = True
-        Me.ProductList.ItemHeight = 15
-        Me.ProductList.Items.AddRange(New Object() {"Dry Cat Food", "Wet Cat Food", "mouses", "Bird Food", "Dry dog food", "Wet Dog food", "Cat litter", "Puppy pads", "pets"})
-        Me.ProductList.Location = New System.Drawing.Point(12, 110)
-        Me.ProductList.Name = "ProductList"
-        Me.ProductList.Size = New System.Drawing.Size(126, 169)
-        Me.ProductList.TabIndex = 0
+        Me.lbProductList.FormattingEnabled = True
+        Me.lbProductList.ItemHeight = 15
+        Me.lbProductList.Items.AddRange(New Object() {"Dry Cat Food", "Wet Cat Food", "mouses", "Bird Food", "Dry dog food", "Wet Dog food", "Cat litter", "Puppy pads", "pets"})
+        Me.lbProductList.Location = New System.Drawing.Point(12, 110)
+        Me.lbProductList.Name = "lbProductList"
+        Me.lbProductList.Size = New System.Drawing.Size(84, 169)
+        Me.lbProductList.TabIndex = 0
         '
         'lblPetSupplyShop
         '
@@ -79,16 +80,17 @@ Partial Class Form1
         Me.Label1.Size = New System.Drawing.Size(0, 15)
         Me.Label1.TabIndex = 2
         '
-        'ListView1
+        'lvProductInformation
         '
-        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.Quantity, Me.ItemPrice, Me.Price})
-        Me.ListView1.HideSelection = False
-        Me.ListView1.Location = New System.Drawing.Point(165, 110)
-        Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(454, 373)
-        Me.ListView1.TabIndex = 3
-        Me.ListView1.UseCompatibleStateImageBehavior = False
-        Me.ListView1.View = System.Windows.Forms.View.Details
+        Me.lvProductInformation.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.Quantity, Me.ItemPrice, Me.Price})
+        Me.lvProductInformation.Enabled = False
+        Me.lvProductInformation.HideSelection = False
+        Me.lvProductInformation.Location = New System.Drawing.Point(165, 110)
+        Me.lvProductInformation.Name = "lvProductInformation"
+        Me.lvProductInformation.Size = New System.Drawing.Size(454, 373)
+        Me.lvProductInformation.TabIndex = 3
+        Me.lvProductInformation.UseCompatibleStateImageBehavior = False
+        Me.lvProductInformation.View = System.Windows.Forms.View.Details
         '
         'ColumnHeader1
         '
@@ -107,14 +109,14 @@ Partial Class Form1
         '
         Me.ItemPrice.Name = "ItemPrice"
         Me.ItemPrice.Text = "Item Price"
-        Me.ItemPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.ItemPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ItemPrice.Width = 100
         '
         'Price
         '
         Me.Price.Name = "Price"
         Me.Price.Text = "Price"
-        Me.Price.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.Price.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.Price.Width = 100
         '
         'lblQuantity
@@ -179,6 +181,8 @@ Partial Class Form1
         Me.TxtTotal.ReadOnly = True
         Me.TxtTotal.Size = New System.Drawing.Size(100, 23)
         Me.TxtTotal.TabIndex = 10
+        Me.TxtTotal.Text = "$ 0.00"
+        Me.TxtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label4
         '
@@ -192,6 +196,7 @@ Partial Class Form1
         '
         'txtCash
         '
+        Me.txtCash.Enabled = False
         Me.txtCash.Location = New System.Drawing.Point(731, 219)
         Me.txtCash.Name = "txtCash"
         Me.txtCash.Size = New System.Drawing.Size(100, 23)
@@ -199,6 +204,7 @@ Partial Class Form1
         '
         'BntCheckOut
         '
+        Me.BntCheckOut.Enabled = False
         Me.BntCheckOut.Location = New System.Drawing.Point(722, 256)
         Me.BntCheckOut.Name = "BntCheckOut"
         Me.BntCheckOut.Size = New System.Drawing.Size(75, 23)
@@ -225,23 +231,27 @@ Partial Class Form1
         Me.lblQuarters.TabIndex = 15
         Me.lblQuarters.Text = "Quarters"
         '
-        'TextBox1
+        'txtQuarters
         '
-        Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(763, 329)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(84, 23)
-        Me.TextBox1.TabIndex = 16
+        Me.txtQuarters.Enabled = False
+        Me.txtQuarters.Location = New System.Drawing.Point(763, 329)
+        Me.txtQuarters.Name = "txtQuarters"
+        Me.txtQuarters.ReadOnly = True
+        Me.txtQuarters.Size = New System.Drawing.Size(84, 23)
+        Me.txtQuarters.TabIndex = 16
+        Me.txtQuarters.Text = "0"
+        Me.txtQuarters.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TextBox2
+        'txtDimes
         '
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(763, 363)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(84, 23)
-        Me.TextBox2.TabIndex = 18
+        Me.txtDimes.Enabled = False
+        Me.txtDimes.Location = New System.Drawing.Point(763, 363)
+        Me.txtDimes.Name = "txtDimes"
+        Me.txtDimes.ReadOnly = True
+        Me.txtDimes.Size = New System.Drawing.Size(84, 23)
+        Me.txtDimes.TabIndex = 18
+        Me.txtDimes.Text = "0"
+        Me.txtDimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label6
         '
@@ -252,14 +262,16 @@ Partial Class Form1
         Me.Label6.TabIndex = 17
         Me.Label6.Text = "Dimes"
         '
-        'TextBox3
+        'txtNickels
         '
-        Me.TextBox3.Enabled = False
-        Me.TextBox3.Location = New System.Drawing.Point(763, 401)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(84, 23)
-        Me.TextBox3.TabIndex = 20
+        Me.txtNickels.Enabled = False
+        Me.txtNickels.Location = New System.Drawing.Point(763, 401)
+        Me.txtNickels.Name = "txtNickels"
+        Me.txtNickels.ReadOnly = True
+        Me.txtNickels.Size = New System.Drawing.Size(84, 23)
+        Me.txtNickels.TabIndex = 20
+        Me.txtNickels.Text = "0"
+        Me.txtNickels.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label7
         '
@@ -270,14 +282,16 @@ Partial Class Form1
         Me.Label7.TabIndex = 19
         Me.Label7.Text = "Nickels"
         '
-        'TextBox4
+        'txtPennis
         '
-        Me.TextBox4.Enabled = False
-        Me.TextBox4.Location = New System.Drawing.Point(763, 440)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.ReadOnly = True
-        Me.TextBox4.Size = New System.Drawing.Size(84, 23)
-        Me.TextBox4.TabIndex = 22
+        Me.txtPennis.Enabled = False
+        Me.txtPennis.Location = New System.Drawing.Point(763, 440)
+        Me.txtPennis.Name = "txtPennis"
+        Me.txtPennis.ReadOnly = True
+        Me.txtPennis.Size = New System.Drawing.Size(84, 23)
+        Me.txtPennis.TabIndex = 22
+        Me.txtPennis.Text = "0"
+        Me.txtPennis.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label8
         '
@@ -288,18 +302,31 @@ Partial Class Form1
         Me.Label8.TabIndex = 21
         Me.Label8.Text = "Pennies"
         '
+        'lbPrices
+        '
+        Me.lbPrices.Enabled = False
+        Me.lbPrices.FormattingEnabled = True
+        Me.lbPrices.ItemHeight = 15
+        Me.lbPrices.Items.AddRange(New Object() {"10.25", "1.25", "3.00", "5.50", "11.79", "1.89", "5.5", "10.5", "100.48"})
+        Me.lbPrices.Location = New System.Drawing.Point(102, 110)
+        Me.lbPrices.Name = "lbPrices"
+        Me.lbPrices.Size = New System.Drawing.Size(57, 169)
+        Me.lbPrices.TabIndex = 23
+        Me.lbPrices.TabStop = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(923, 508)
-        Me.Controls.Add(Me.TextBox4)
+        Me.Controls.Add(Me.lbPrices)
+        Me.Controls.Add(Me.txtPennis)
         Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.txtNickels)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.txtDimes)
         Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txtQuarters)
         Me.Controls.Add(Me.lblQuarters)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.BntCheckOut)
@@ -312,10 +339,10 @@ Partial Class Form1
         Me.Controls.Add(Me.lblCheckOut)
         Me.Controls.Add(Me.txtQuantity)
         Me.Controls.Add(Me.lblQuantity)
-        Me.Controls.Add(Me.ListView1)
+        Me.Controls.Add(Me.lvProductInformation)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lblPetSupplyShop)
-        Me.Controls.Add(Me.ProductList)
+        Me.Controls.Add(Me.lbProductList)
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
@@ -323,10 +350,10 @@ Partial Class Form1
 
     End Sub
 
-    Friend WithEvents ProductList As ListBox
+    Friend WithEvents lbProductList As ListBox
     Friend WithEvents lblPetSupplyShop As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents ListView1 As ListView
+    Friend WithEvents lvProductInformation As ListView
     Friend WithEvents Product As ColumnHeader
     Friend WithEvents Quantity As ColumnHeader
     Friend WithEvents ItemPrice As ColumnHeader
@@ -344,11 +371,13 @@ Partial Class Form1
     Friend WithEvents BntCheckOut As Button
     Friend WithEvents Label5 As Label
     Friend WithEvents lblQuarters As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtQuarters As TextBox
+    Friend WithEvents txtDimes As TextBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents txtNickels As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents TextBox4 As TextBox
     Friend WithEvents Label8 As Label
+    Friend WithEvents lbPrices As ListBox
+    Friend WithEvents txtPennis As TextBox
 End Class
